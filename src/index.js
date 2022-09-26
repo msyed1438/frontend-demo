@@ -49,11 +49,14 @@ const App = () => {
     //Create a new array where, at the clicked index, we toggle the isCollapsed state
     toggledQAs = qas_copy.map((QA, i) => {
       if (i === indexClicked) {
+        alert('Index: ', i, ' was triggered')
         return toggledQA(QA);
       } else {
         return QA;
       }
     });
+    console.log('Toggled QAs: ', toggleQAs)
+    alert(JSON.stringify(toggledQAs))
 
     setFAQs(toggledQAs)
   };
