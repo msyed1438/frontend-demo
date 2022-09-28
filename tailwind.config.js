@@ -2,7 +2,11 @@
 module.exports = {
   content: ['src/**/*.{js, html}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: "'Poppins', sans-serif"
+      }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
