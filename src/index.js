@@ -6,9 +6,8 @@ const App = () => {
   const [faqs, setFAQs] = useState([]);
 
   useEffect(() => {
-    setFAQs(initialState)
-  }, [])
-  
+    setFAQs(initialState);
+  }, []);
 
   const initialState = [
     {
@@ -36,50 +35,46 @@ const App = () => {
 
   const toggleQAs = (indexClicked) => {
     //Create a deep copy of current FAQ state
+
     const qas_copy = faqs.map((a) => {
       return { ...a };
     });
 
     //Helper function to toggle a single FAQ
     const toggledQA = (qaBlock) => {
-      qaBlock[isCollapsed] = !qaBlock[isCollapsed];
+      qaBlock["isCollapsed"] = !qaBlock["isCollapsed"];
       return qaBlock;
     };
 
     //Create a new array where, at the clicked index, we toggle the isCollapsed state
     toggledQAs = qas_copy.map((QA, i) => {
       if (i === indexClicked) {
-        alert('Index: ', i, ' was triggered')
         return toggledQA(QA);
       } else {
         return QA;
       }
     });
-    console.log('Toggled QAs: ', toggleQAs)
-    alert(JSON.stringify(toggledQAs))
+    console.log("Toggled QAs: ", toggleQAs);
 
-    setFAQs(toggledQAs)
+    setFAQs(toggledQAs);
   };
-
-   
 
   return (
     <div className="h-screen bg-cool-gray shadow-inner grid place-items-center">
       <div className="max-w-sm flex flex-col bg-white p-8 rounded-xl shadow-xl">
-        <h1 className="text-3xl font-extrabold mb-4 text-slate-900">
+        <h1 className="text-3xl font-extrabold mb-4 text-slate-900 leading-9 subpixel-antialiased">
           Frequently Asked Questions
         </h1>
-        <div className="mb-5 faqs">
-
-
+        <div className="mb-5 faqs flex flex-col gap-2">
           {faqs.map((faq, i) => (
             <QABlock
               isCollapsed={faq["isCollapsed"]}
               toggleIsOpen={toggleQAs}
               question={faq["question"]}
               answer={faq["answer"]}
-              qa_index={i}
-              faqs= {faqs}
+              qaIndex={i}
+              faqs={faqs}
+              key={i}
             />
           ))}
 
